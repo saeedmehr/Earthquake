@@ -1,0 +1,28 @@
+version: '3'
+services:
+  #============================================================          App
+  app:
+    build: .
+    hostname: app
+    depends_on:
+     - db
+    networks:
+     - earthquake
+    environment:
+     WAIT_HOSTS: db:5432
+  #============================================================          PostGis
+  db:
+    hostname: 'db'
+    image: mdillon/postgis:latest
+    ports:
+     - 2345:5432
+    volumes:
+     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+     - POSTGRES_PORT=5432
+     - POSTGRES_USER=saeed
+     - POSTGRES_PASSWORD=123
+    networks:
+     - earthquake
+networks:
+  earthquake:
