@@ -19,19 +19,19 @@ docker-compose up
 
 After this, you can test the `visuals.py` program to see same visuals in my screen shot folder. 
 
-Finding max mag querry
+Finding max mag query
 -----------
 ```bash 
 select * from earthquakes where mag is not null order by mag desc limit 1;
 ```
 
-First querry (second question)
+First query (second question)
 -----------
 ```bash
  select tbl.hour,tbl.mag, tbl.probability from tbl join (select max(probability) as probability, hour from tbl group by hour) as tb22 on tbl.probability=tb22.probability and tbl.hour = tb22.hour
 ```
 
-Second querry (second question)
+Second query (second question)
 -----------
 ```bash
 CREATE TEMP TABLE tbl AS
